@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+    <title>Document</title>
+    <style>
+        h3{
+            display: none;
+        }
+        .nav li:nth-child(1){
+            color: #e5a67a;
+        }
+
+        .slide { 
+            position:relative;
+            width:100%;
+        }
+        .slider-div {
+            /* slick을 적용시킬 요소 */
+            width: 1150px;
+            height: 810px;
+            display: flex;
+            overflow: hidden;
+        }
+        .item {
+            /* 슬라이드 되어야 할 아이템 */
+            width: 1150px;
+            height: 810px;
+            position: relative;
+        }
+        .slider-nav{
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            position: absolute;
+            bottom: 5%;
+            left: 5%;
+        }
+        .prev{
+            width: 40px;
+            height: 40px;
+            background-color: transparent;
+            border-bottom: none;
+            border-left: none;
+            border-top: 1px solid #fff;
+            border-right: 1px solid #fff;
+            transform: translateY(-50%) rotate(225deg);
+            position: absolute;
+            left: 7%;
+            top: 55%;
+            cursor: pointer;
+        }
+        .next{
+            width: 40px;
+            height: 40px;
+            background-color: transparent;
+            border-top: none;
+            border-right: none;
+            border-left: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+            transform: translateY(-50%) rotate(225deg);
+            position: absolute;
+            right: 38%;
+            top: 55%;
+            cursor: pointer;
+        }
+.slick-dots li button:before{
+    color: #e5a67a;
+}
+.slick-dots li.slick-active button:before{
+    color: #e5a67a;
+}
+    </style>
+</head>
+<body> 
+    <section class="sec slide">
+        <h3>슬라이드</h3>
+        <!-- slick을 적용시킬 요소 -->
+        <div class="slider-div">
+            <div class="item">
+                <a href="#">
+                    <img src="./slide01.jpg" alt="네일아트 이미지1">
+                    <div class="slider-nav">1/6</div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="./slide02.jpg" alt="네일아트 이미지1">
+                    <div class="slider-nav">2/6</div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="./slide03.jpg" alt="네일아트 이미지1">
+                    <div class="slider-nav">3/6</div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="./slide04.jpg" alt="네일아트 이미지1">
+                    <div class="slider-nav">4/6</div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="./slide05.jpg" alt="네일아트 이미지1">
+                    <div class="slider-nav">5/6</div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="./slide06.jpg" alt="네일아트 이미지1">
+                    <div class="slider-nav">6/6</div>
+                </a>
+            </div>
+        </div>
+        <div class="slide-button">
+            <div class="next">
+                <span></span>
+            </div>
+            <div class="prev">
+                <span></span>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- 제이쿼리 불러오기 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Slick 불러오기 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <!-- script 외부파일 -->
+    <!-- <script src="./js/script.js"></script> -->
+
+    <script type="text/javascript">
+        $(function(){
+        $('.slider-div').slick({
+        slide: 'div',   //슬라이드 되어야 할 div  
+        infinite : true,  //무한 반복 옵션   
+        slidesToShow : 1,   // 한 화면에 보여질 컨텐츠 개수
+        slidesToScroll : 1,   //스크롤 한번에 움직일 컨텐츠 개수
+        speed : 100,   // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+        arrows : true,    // 옆으로 이동하는 화살표 표시 여부
+        autoplay : true,      // 자동 스크롤 사용 여부
+        autoplaySpeed : 5000,    // 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+        pauseOnHover : true,    // 슬라이드 이동 시 마우스 호버하면 슬라이더 멈추게 설정
+        vertical : false,   // 세로 방향 슬라이드 옵션
+        prevArrow : ".prev",    // 이전 화살표 모양 설정
+        nextArrow : ".next",    // 다음 화살표 모양 설정
+        draggable : true,   //드래그 가능 여부 
+        centerMode: false,  //센터모드 (active된 요소가 화면 가운데로,slidesToShow 갯수가 짝수 일 경우 아이템의 경계선이 가운데로 옴)
+        customPaging : function(slider, i) {
+          var thumb = $(slider.$slides[i]).find('.slider-nav');
+          return thumb;
+        }
+        // responsive: [ // 반응형 웹 구현 옵션
+        //     {  
+        //     breakpoint: 1200, //화면 사이즈 1200px
+        //     settings: {
+        //         //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+        //         slidesToShow:2
+        //     } 
+        //     },
+        //     { 
+        //     breakpoint: 960, //화면 사이즈 960px
+        //     settings: {
+        //         //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+        //         slidesToShow:1 
+        //     } 
+        //     },
+        //     { 
+        //     breakpoint: 768, //화면 사이즈 768px
+        //     settings: { 
+        //         //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+        //         slidesToShow:1,
+        //         arrows : false,    // 옆으로 이동하는 화살표 표시 여부
+        //         dots : false,    // 스크롤바 아래 점으로 페이지네이션 여부
+        //         centerMode: false,  //센터모드 (active된 요소가 화면 가운데로,slidesToShow 갯수가 짝수 일 경우 아이템의 경계선이 가운데로 옴)
+        //     } 
+        //     }
+        // ]
+
+        });
+    })
+      </script>
+</body>
+</html>
